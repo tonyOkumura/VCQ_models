@@ -7,7 +7,7 @@ class User extends Equatable {
   final String phone;
   final String email;
   final String avatarUrl;
-  final String status;
+  // final String status;
 
   const User({
     required this.id,
@@ -15,7 +15,7 @@ class User extends Equatable {
     required this.phone,
     required this.email,
     required this.avatarUrl,
-    required this.status,
+    // required this.status,
   });
 
   User copyWith({
@@ -24,7 +24,7 @@ class User extends Equatable {
     String? phone,
     String? email,
     String? avatarUrl,
-    String? status,
+    // String? status,
   }) {
     return User(
       id: id ?? this.id,
@@ -32,7 +32,7 @@ class User extends Equatable {
       phone: phone ?? this.phone,
       email: email ?? this.email,
       avatarUrl: avatarUrl ?? this.avatarUrl,
-      status: status ?? this.status,
+      // status: status ?? this.status,
     );
   }
 
@@ -44,7 +44,7 @@ class User extends Equatable {
       email: json['email'] ?? '',
       avatarUrl:
           json['avatar_url'] ?? 'https://source.unsplash.com/random/?profile',
-      status: json['status'] ?? '',
+      // status: json['status'] ?? '',
     );
   }
 
@@ -55,12 +55,12 @@ class User extends Equatable {
       'phone': phone,
       'email': email,
       'avatar_url': avatarUrl,
-      'status': status,
+      //'status': status,
     };
   }
 
   @override
-  List<Object?> get props => [id, username, phone, email, avatarUrl, status];
+  List<Object?> get props => [id, username, phone, email, avatarUrl];
 }
 
 
