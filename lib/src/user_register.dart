@@ -12,14 +12,14 @@ class UserRegister extends Equatable {
   });
   factory UserRegister.fromJson(Map<String, dynamic> json) {
     return UserRegister(
-      username: json['email'],
+      username: json['username'],
       password: json['password'],
       secret_word: json['secret_word'],
     );
   }
 
   Map<String, dynamic> toJson() =>
-      {'email': username, 'password': password, 'secret_word': secret_word};
+      {'username': username, 'password': password, 'secret_word': secret_word};
 
   @override
   List<Object?> get props => [username, password, secret_word];

@@ -10,13 +10,13 @@ class UserLogin extends Equatable {
   });
   factory UserLogin.fromJson(Map<String, dynamic> json) {
     return UserLogin(
-      username: json['email'],
+      username: json['username'],
       password: json['password'],
     );
   }
 
   Map<String, dynamic> toJson() => {
-        'email': username,
+        'username': username,
         'password': password,
       };
 
