@@ -4,22 +4,22 @@ import 'package:uuid/uuid.dart';
 import '../models.dart';
 
 class Message extends Equatable {
-  final String? id;
   final String chatRoomId;
-  final String senderUserId;
   final String receiverUserId;
+  final String senderUserId;
+  final String? id;
   final String? content;
   final Attachment? attachment;
-  final DateTime createdAt;
+  final DateTime? createdAt;
 
   const Message({
-    this.id,
     required this.chatRoomId,
     required this.senderUserId,
     required this.receiverUserId,
+    this.createdAt,
+    this.id,
     this.content,
     this.attachment,
-    required this.createdAt,
   });
 
   Message copyWith({
@@ -44,25 +44,29 @@ class Message extends Equatable {
 
   factory Message.fromJson(Map<String, dynamic> json) {
     return Message(
-      id: json['id'] ?? const Uuid().v4(),
-      chatRoomId: json['chat_room_id'] ?? '',
-      senderUserId: json['sender_user_id'] ?? '',
-      receiverUserId: json['receiver_user_id'] ?? '',
+      id: json['id'],
+      chatRoomId: json['chat_room_id'],
+      senderUserId: json['sender_user_id'],
+      receiverUserId: json['receiver_user_id'],
       content: json['content'],
       attachment: json['attachment'] != null
           ? Attachment.fromJson(json['attachment'])
           : null,
-      createdAt: DateTime.parse(json['created_at']),
+      createdAt: json['created_at'] != null
+          ? DateTime.parse(json['created_at'])
+          : null,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'chat_room_id': chatRoomId,
       'sender_user_id': senderUserId,
       'receiver_user_id': receiverUserId,
       'content': content,
-      'created_at': createdAt.toIso8601String(),
+      'attachment': attachment?.toJson(),
+      'created_at': createdAt?.toIso8601String(),
     };
   }
 

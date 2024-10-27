@@ -47,7 +47,7 @@ class ChatRoom extends Equatable {
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'participants': participants,
+      'participants': participants.map((user) => user.toJson()).toList(),
       'last_message': lastMessage.toJson(),
       'unread_count': unreadCount,
     };
