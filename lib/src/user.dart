@@ -30,7 +30,9 @@ class User extends Equatable {
       phone: json['phone'],
       avatarUrl: json['avatar_url'],
       createdAt: DateTime.parse(json['created_at']),
-      updatedAt: DateTime.parse(json['updated_at']),
+      updatedAt: json['updated_at'] != null
+          ? DateTime.parse(json['updated_at'])
+          : null,
       is_online: json['is_online'],
     );
   }
