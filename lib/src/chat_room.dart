@@ -7,14 +7,14 @@ import '../models.dart';
 class ChatRoom extends Equatable {
   final String id;
   final List<User> participants;
-  final Message lastMessage;
-  final int unreadCount;
+  final Message? lastMessage;
+  final int? unreadCount;
 
   const ChatRoom({
     required this.id,
     required this.participants,
-    required this.lastMessage,
-    required this.unreadCount,
+    this.lastMessage,
+    this.unreadCount,
   });
 
   ChatRoom copyWith({
@@ -39,8 +39,8 @@ class ChatRoom extends Equatable {
               .map<User>((user) => User.fromJson(user))
               .toList()
           : [],
-      lastMessage: Message.fromJson(json['last_message'] ?? {}),
-      unreadCount: json['unread_count'] ?? 0,
+      lastMessage: Message.fromJson(json['last_message']),
+      unreadCount: json['unread_count'],
     );
   }
 
@@ -48,7 +48,7 @@ class ChatRoom extends Equatable {
     return {
       'id': id,
       'participants': participants.map((user) => user.toJson()).toList(),
-      'last_message': lastMessage.toJson(),
+      'last_message': lastMessage?.toJson(),
       'unread_count': unreadCount,
     };
   }
