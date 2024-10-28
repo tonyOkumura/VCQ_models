@@ -33,14 +33,14 @@ class ChatRoom extends Equatable {
 
   factory ChatRoom.fromJson(Map<String, dynamic> json) {
     return ChatRoom(
-      id: json['id'] ?? const Uuid().v4(),
-      participants: (json['participants'] is List)
-          ? json['participants']
-              .map<User>((user) => User.fromJson(user))
-              .toList()
-          : [],
-      lastMessage: Message.fromJson(json['last_message']),
-      unreadCount: json['unread_count'],
+      id: json['id'],
+      participants: (json['participants'] as List)
+          .map<User>((user) => User.fromJson(user as Map<String, dynamic>))
+          .toList(),
+      lastMessage: json['last_message'] != null
+          ? Message.fromJson(json['last_message'])
+          : null,
+      unreadCount: json['unread_count'] ?? 0,
     );
   }
 
