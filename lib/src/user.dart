@@ -1,21 +1,22 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
+import 'package:uuid/uuid.dart';
 
 class User extends Equatable {
-  final String id;
   final String username;
+  final DateTime createdAt;
+  final bool is_online;
+  final String? id;
   final String? email;
   final String? phone;
   final String? avatarUrl;
-  final DateTime createdAt;
   final DateTime? updatedAt;
-  final bool is_online;
 
   const User({
-    required this.id,
     required this.username,
     required this.createdAt,
     required this.is_online,
+    this.id,
     this.phone,
     this.email,
     this.avatarUrl,
@@ -39,7 +40,7 @@ class User extends Equatable {
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
+      'id': id ?? Uuid().v4(),
       'username': username,
       'email': email,
       'phone': phone,

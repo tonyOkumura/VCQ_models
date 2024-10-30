@@ -5,14 +5,14 @@ import 'package:uuid/uuid.dart';
 import '../models.dart';
 
 class ChatRoom extends Equatable {
-  final String id;
   final List<User> participants;
+  final String? id;
   final Message? lastMessage;
   final int? unreadCount;
 
   const ChatRoom({
-    required this.id,
     required this.participants,
+    this.id,
     this.lastMessage,
     this.unreadCount,
   });
@@ -46,7 +46,7 @@ class ChatRoom extends Equatable {
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
+      'id': id ?? Uuid().v4(),
       'participants': participants.map((user) => user.toJson()).toList(),
       'last_message': lastMessage?.toJson(),
       'unread_count': unreadCount,

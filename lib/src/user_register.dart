@@ -1,13 +1,14 @@
 import 'package:equatable/equatable.dart';
+import 'package:uuid/uuid.dart';
 
 class UserRegister extends Equatable {
-  final String id;
+  final String? id;
   final String username;
   final String password_hash;
   final String secret_word;
 
   UserRegister({
-    required this.id,
+    this.id,
     required this.username,
     required this.password_hash,
     required this.secret_word,
@@ -22,7 +23,7 @@ class UserRegister extends Equatable {
   }
 
   Map<String, dynamic> toJson() => {
-        'id': id,
+        'id': id ?? Uuid().v4(),
         'username': username,
         'password_hash': password_hash,
         'secret_word': secret_word

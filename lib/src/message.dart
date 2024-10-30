@@ -60,7 +60,7 @@ class Message extends Equatable {
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
+      'id': id ?? Uuid().v4(),
       'chat_room_id': chatRoomId,
       'sender_user_id': senderUserId,
       'receiver_user_id': receiverUserId,
